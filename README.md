@@ -9,14 +9,13 @@ Updated to work with the release version of Angular2
 # How to get it working
 
 ## Installation
-1. `npm install flyacts-angular2-swagger-client-generator`
-
-or
-
-1. get it from github `git clone https://github.com/flyacts/angular2-swagger-client-generator`
+1. get it from github `git clone https://github.com/GroupCDG/angular2-swagger-client-generator`
 1. `cd flyacts-angular2-swagger-client-generator`
 1. `npm install`
 1. `npm run build`
+
+Add it to your project:
+1. add `"flyacts-angular2-swagger-client-generator": "github:GroupCDG/angular2-swagger-client-generator#v0.0.45",` to your `devDependancies`.
 
 ## Usage
 
