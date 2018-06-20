@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+* Licensed under the Apache License, Version 2.0 (the "License");
+* Please note: This is not the original version of file. This has been modified by CDG.
+*/
+
 var fs = require('fs');
 var Mustache = require('mustache');
 // var beautify = require('js-beautify').js_beautify;
