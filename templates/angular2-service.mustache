@@ -6,7 +6,8 @@ import {
     {{/definitions}}
 } from './models';
 import 'rxjs/Rx';
-import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable()
 /**
@@ -156,9 +157,9 @@ export class ApiClientService {
                 {{/isNotGET}}
                 params: params
             })
-        .map((res: HttpResponse<Object>) => {
+        .pipe(map((res: HttpResponse<Object>) => {
             return res;
-        });
+        }));
     }
 {{/methods}}
 }
