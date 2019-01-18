@@ -1,3 +1,7 @@
+/**
+* Licensed under the Apache License, Version 2.0 (the "License");
+* Please note: This is not the original version of file. This has been modified by CDG.
+*/
 var gulp = require('gulp');
 var fs = require("fs");
 

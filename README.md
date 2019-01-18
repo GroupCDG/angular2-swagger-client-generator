@@ -45,3 +45,14 @@ node ./src/main -s .\tests\apis\swagger.json -o ./out
 This project was inspired by:
 
 [swagger-js-codegen](https://github.com/wcandillon/swagger-js-codegen) project
+
+
+##Note: This project is originally Licensed under the Apache License, Version 2.0 (the "License");
+Other than few js files where modification comments are already added, below files are not original and are modified by CDG.
+```
+/angular2-swagger-client-generator/templates/angular2-model-enum.mustache
+/angular2-swagger-client-generator/templates/angular2-model.mustache
+/angular2-swagger-client-generator/templates/angular2-models-export.mustache
+/angular2-swagger-client-generator/templates/angular2-service.mustache
+/angular2-swagger-client-generator/package.json
+```
