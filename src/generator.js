@@ -115,17 +115,16 @@ var Generator = (function () {
                     // ref and enum check
                     if (_.has(parameter, '$ref') || (parameter.type === 'array' && _.has(parameter.items, '$ref'))) {
                         parameter.isRef = true;
-                    } else if (_.has(parameter, 'enum')) {
+                    } else if (_.has(parameter, 'enum') || (parameter.isArray && _.has(parameter.items, 'enum'))) {
                         parameter.isEnum = true;
                     }
 
                     // Create refs for arrays, generated classes, and enums
                     if (parameter.isArray && _.has(parameter.items, '$ref')) {
                         parameter.type = that.camelCase(parameter.items["$ref"].replace("#/definitions/", ""));
-                    }
-                    else if (_.has(parameter, '$ref')) {
+                    } else if (_.has(parameter, '$ref')) {
                         parameter.type = that.camelCase(parameter["$ref"].replace("#/definitions/", ""));
-                    } else if (_.has(parameter, 'enum')) {
+                    } else if (_.has(parameter, 'enum') || (parameter.isArray && _.has(parameter.items, 'enum'))) {
                         var enumName = that.camelCase(parameter.name);
                         enumName = that.capitalize(enumName);
                         parameter.type = definition.name + enumName;
@@ -198,11 +197,15 @@ var Generator = (function () {
 
             that.LogMessage('Searching for Enums in: ', definition.name);
 
+            if (definition.name === 'PaymentSchedule') {
+                that.LogMessage('printing:', definition);
+            }
+            
             for (var key in definition.properties) {
                 if (definition.properties.hasOwnProperty(key)) {
                     var parameter = definition.properties[key];
 
-                    if (parameter.enum) {
+                    if (parameter.enum || (parameter.isArray && _.has(parameter.items, 'enum'))) {
                         enumPresent = true;
 
                         var enumParameters = [];
@@ -222,11 +225,14 @@ var Generator = (function () {
                             parameter.required = false;
                         }
 
+
+                        var enums = parameter.isArray ? parameter.items.enum : parameter.enum;
+
                         // Get the enum values
-                        for (var enumKey in parameter.enum) {
-                            if (parameter.enum.hasOwnProperty(enumKey)) {
+                        for (var enumKey in enums) {
+                            if (enums.hasOwnProperty(enumKey)) {
                                 var workingEnumVal = {};
-                                var name = parameter.enum[enumKey];
+                                var name = enums[enumKey];
                                 // name = that.capitalize(name);
                                 // name = that.camelCase(name);
 
